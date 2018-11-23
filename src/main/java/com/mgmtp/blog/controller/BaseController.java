@@ -24,7 +24,8 @@ public class BaseController {
 
 	@RequestMapping("/")
 	public String showIndex(Model model, HttpServletRequest request,HttpServletResponse response) {
-		
+		response.setHeader("X-FRAME-OPTIONS","SAMEORIGIN");
+		response.setHeader("Content-Security-Policy","frame-ancestors'self'");
 		List<Post> posts = postService.findAll();
 		model.addAttribute("posts", posts);
 
