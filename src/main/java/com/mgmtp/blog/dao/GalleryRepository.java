@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PostRepository {
+public class GalleryRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -16,7 +16,7 @@ public class PostRepository {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Post> findAll() {
+    /*public List<Post> findAll() {
     		List<Post> result;
     		try {
     			result = jdbcTemplate.query( "SELECT * FROM Posts ORDER BY id DESC;",
@@ -71,7 +71,7 @@ public class PostRepository {
     			
     		return result;
 
-    }
+    }*/
 
     public boolean addPost(Post post) {
     		try {

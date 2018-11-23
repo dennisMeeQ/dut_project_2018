@@ -23,7 +23,8 @@ public class BaseController {
 	SessionService sessionService;
 
 	@RequestMapping("/")
-	public String showIndex(Model model, HttpServletRequest request) {
+	public String showIndex(Model model, HttpServletRequest request,HttpServletResponse response) {
+		
 		List<Post> posts = postService.findAll();
 		model.addAttribute("posts", posts);
 
