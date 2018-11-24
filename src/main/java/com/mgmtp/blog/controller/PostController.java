@@ -61,15 +61,15 @@ public class PostController {
 	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public String showHomePage(HttpServletRequest request, 
 			HttpServletResponse response, Model model) {
-		String postTitle = request.getParameter("post-title"); 
-		String postContent = request.getParameter("post-content"); 
+		String postTitle = request.getParameter("post-title");
+		String postContentHtml = request.getParameter("post-content-html");
 		Cookie loginCookie = sessionService.checkLoginCookie(request);
 		List<Session> sessions;
 		if (loginCookie != null) {
 			sessions = sessionService.checkSessionId(loginCookie.getValue());
     			if (!sessions.isEmpty()) {
     				List<User> users = userService.findByUsername(sessions.get(0).getUsername());
-    				Post post = new Post(postTitle, postContent, users.get(0));
+    				Post post = new Post(postTitle, postContentHtml, users.get(0));
     				if(postService.addPost(post)) {
 						model.addAttribute("isSuccess", true);
 						return "redirect:/";
