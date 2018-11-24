@@ -14,5 +14,6 @@ public interface UserService {
 	boolean resetAllPassword();
 	
 	boolean addUser(User user, String salt);
-	
+
+    boolean changePassword(User user);
 }

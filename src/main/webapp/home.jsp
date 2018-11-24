@@ -23,11 +23,11 @@
         	  <input type="hidden" name="username" value="${username}">
 		  <div class="form-group">
 		    <label for="exampleInputPassword1">New Password</label>
-		    <input type="password" class="form-control" name="password1" id="exampleInputPassword1" placeholder="Password">
+		    <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputPassword2">Verify</label>
-		    <input type="password" class="form-control" name="password2" id="exampleInputPassword2" placeholder="Password">
+		    <input type="password" class="form-control" name="password_confirm" id="exampleInputPassword2" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>

