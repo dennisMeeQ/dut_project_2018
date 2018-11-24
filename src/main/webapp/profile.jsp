@@ -4,9 +4,9 @@
 <t:wrapper>
     <div class="loginpage text-center">
         <form class="form-login" method="post">
-            <h1 class="h3 mb-3 font-weight-normal">${user.username}</h1>
-            <p class="form-control">${user.firstname}</p>
-            <p class="form-control">${user.lastname}</p>
+            <h1 class="h3 mb-3 font-weight-normal"><c:out value="${user.username}"/></h1>
+            <p class="form-control"><c:out value="${user.firstname}"/></p>
+            <p class="form-control"><c:out value="${user.lastname}"/></p>
         </form>
     </div>
 </t:wrapper>
