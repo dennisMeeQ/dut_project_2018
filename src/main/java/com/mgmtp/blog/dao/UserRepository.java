@@ -139,4 +139,11 @@ public class UserRepository {
 		}
 	}
 
+	public void updatePassword(User user) {
+    	try {
+    		jdbcTemplate.update("UPDATE Users SET password = ? WHERE username = ?", user.getPassword(), user.getUsername());
+		} catch (Exception e) {
+    		e.getStackTrace();
+		}
+	}
 }

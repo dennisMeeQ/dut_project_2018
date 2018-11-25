@@ -77,5 +77,18 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;
 	}
-    
+
+	@Override
+	public boolean changePassword(User user) {
+		try {
+			userRepository.updatePassword(user);
+			userRepository.updateSaltColumn(user.getUsername(), user.getSalt());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 }

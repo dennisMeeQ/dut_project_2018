@@ -131,6 +131,45 @@ public class LoginController {
 		setSessionCookie(request, response, username);
 		return "redirect:/home";
 	}
+
+	@RequestMapping(value = "/password", method = RequestMethod.POST)
+	public String changePassword (HttpServletRequest request, Model model) {
+		Cookie loginCookie = sessionService.checkLoginCookie(request);
+		if (loginCookie == null)
+			return "redirect:/login";
+
+		List<Session> sessions;
+		sessions = sessionService.checkSessionId(loginCookie.getValue());
+		if (sessions.isEmpty())
+			return "redirect:/";
+		String current_password = request.getParameter("current-password");
+		String new_password = request.getParameter("new-password");
+		String new_password_confirm = request.getParameter("new-password-confirm");
+
+		if (current_password.isEmpty() || new_password.isEmpty() || new_password_confirm.isEmpty()) {
+			model.addAttribute("errorMessage", "Password can not be blank");
+			return "redirect:/home";
+		}
+
+		if (!new_password.equals(new_password_confirm)) {
+			model.addAttribute("errorMessage", "Invalid password");
+			return "redirect:/home";
+		}
+
+		User user = userService.findByUsername(sessions.get(0).getUsername()).get(0);
+		boolean isValidPassword =  userService.validateUser(user.getUsername(), current_password);
+
+		if (!isValidPassword) {
+			model.addAttribute("errorMessage", "Incorrect password");
+			return "redirect:/home";
+		}
+
+		String salt = passwordService.getRandomString(8);
+		user.setPassword(passwordService.pbkdf2(new_password, salt));
+		user.setSalt(salt);
+		userService.changePassword(user);
+		return "redirect:/home";
+	}
 	
 	private void setSessionCookie(HttpServletRequest request, 
 			HttpServletResponse response, String username) {
