@@ -9,13 +9,12 @@
       <div class="row">
         <div class="col-md-8 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
-             XVulB
+            Welcome to XVulB
           </h3>
 		  <c:if test="${searchquery != null}">
 		    <div class="alert alert-info" role="alert">
 		    		Searching result for <strong>
-						${searchquery}
-						
+					  <c:out value="${searchquery}"/>
 		  		</strong> 
 			</div>	
 		  </c:if>   
@@ -65,6 +64,7 @@
         </aside><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
+
     </main><!-- /.container -->
 	
 </t:wrapper>

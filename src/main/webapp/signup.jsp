@@ -14,7 +14,7 @@
 					onchange="validate()">
 			<input type="text" name="firstname" class="form-control" placeholder="your first name" required>
 			<input type="text" name="lastname" class="form-control" placeholder="your last name" required>
-			<!-- <div class="g-recaptcha" data-sitekey="6LefDkwUAAAAAH20_0jZI2JNic67TnXNgXX1Ge75"></div> -->
+			<div class="g-recaptcha" data-sitekey="6LefDkwUAAAAAH20_0jZI2JNic67TnXNgXX1Ge75"></div>
 			<br>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
 			<p class="error" style="color:red">
