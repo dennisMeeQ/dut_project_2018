@@ -42,7 +42,7 @@
 	      </h5>
 	    </div>
 	       <div class="card-body">
-	       <form action="/post" method="post">
+	       <form id="postForm" action="/post" method="post" onsubmit="submitPost()">
 	          <input type="hidden" name="username" value="${username}">
 			  <div class="form-group">
 			    <label for="post-title">Title</label>
@@ -52,6 +52,7 @@
 			  <div class="form-group">
 			    <label for="post-content">Content</label>
 			    <textarea class="form-control" id="post-content" name="post-content" rows="4"></textarea>
+                <input type="hidden" name="post-content-html">
 			  </div>
 			  <button type="submit" class="btn btn-primary">Submit</button>
 			  
@@ -105,4 +106,13 @@
 
 </div>
 <div></div>
+    <script src="js/showdown.min.js"> </script>
+    <script>
+        function submitPost() {
+            var converter = new showdown.Converter();
+            content = document.forms["postForm"]["post-content"].value;
+            document.forms["postForm"]["post-content-html"].value = converter.makeHtml(content);
+            return true;
+        }
+    </script>
 </t:wrapper2>
