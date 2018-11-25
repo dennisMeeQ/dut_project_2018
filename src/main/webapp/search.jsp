@@ -32,12 +32,12 @@
 					</tr>
 					<c:forEach items="${user}" var="users">
 						<tr>
-							<td>${user.id}></td>
-							<td>${user.username}</td>
-							<td>${user.password}</td>
-							<td>${user.salt}</td>
-							<td>${user.firstname}</td>
-							<td>${user.lastname}</td>
+							<td><c:out value="${user.id}" /></td>
+							<td><c:out value="${user.username}" /></td>
+							<td><c:out value="${user.password}" /></td>
+							<td><c:out value="${user.salt}" /></td>
+							<td><c:out value="${user.firstname}" /></td>
+							<td><c:out value="${user.lastname}" /></td>
 						</tr>
 					</c:forEach>
 
