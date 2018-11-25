@@ -131,7 +131,36 @@ public class LoginController {
 		setSessionCookie(request, response, username);
 		return "redirect:/home";
 	}
-	
+
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String showProfile(Model model, HttpServletRequest request) {
+		Cookie loginCookie = sessionService.checkLoginCookie(request);
+
+		if (loginCookie == null)
+			return "redirect:/login";
+
+		List<Session> sessions;
+		sessions = sessionService.checkSessionId(loginCookie.getValue());
+		if (sessions.isEmpty())
+			return "redirect:/login";
+
+		String username = request.getParameter("username");
+		List<User> users;
+		User user;
+
+		if (username.length() == 0) {
+			username = sessions.get(0).getUsername();
+		}
+
+		users = userService.findByUsername(username);
+
+		if (users.isEmpty())
+			return "redirect:/";
+		user = users.get(0);
+		model.addAttribute("user", user);
+		return "profile";
+	}
+
 	private void setSessionCookie(HttpServletRequest request, 
 			HttpServletResponse response, String username) {
 

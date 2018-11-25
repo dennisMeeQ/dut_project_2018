@@ -25,7 +25,7 @@
 		          <c:out value="${post.title}"/>
 		        </a>
 		      </h2>
-		      <p class="blog-post-meta"><c:out value="${post.createdDay}"/> by <a href="#"><c:out value="${post.createdBy}"/></a></p>
+		      <p class="blog-post-meta"><c:out value="${post.createdDay}"/> by <a href="/profile?username=<c:out value="${post.createdBy}"/>"><c:out value="${post.createdBy}"/></a></p>
 		      <div style="text-align:  justify;">
 		      <c:choose>
     				<c:when test="${fn:length(post.content) gt 201}">
