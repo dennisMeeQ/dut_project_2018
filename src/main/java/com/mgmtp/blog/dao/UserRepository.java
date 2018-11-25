@@ -31,7 +31,7 @@ public class UserRepository {
     
     public List<User> findByUsername(String username) {
     		try {
-    			List<User> result = jdbcTemplate.query( "SELECT * FROM Users WHERE username=?", 
+    			List<User> result = jdbcTemplate.query( "SELECT * FROM Users WHERE username LIKE ?",
 						   (rs, rowNum) -> new User( rs.getLong("id"),
 								   					rs.getString("username"), 
 								   					rs.getString("password"), 
