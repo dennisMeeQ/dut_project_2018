@@ -39,14 +39,14 @@ public class LoginController {
 			HttpServletResponse response, Model model) {
 		String username = request.getParameter("username");  
 		String password = request.getParameter("password"); 
-		// String g_recaptcha_response = request.getParameter("g-recaptcha-response");
+		String g_recaptcha_response = request.getParameter("g-recaptcha-response");
 		
 
-		// if(!captchaService.verifyResponse(g_recaptcha_response)) {
-		// 	model.addAttribute("errorMessage", "You're going too fast");
-		// 	return "login";
+		if(!captchaService.verifyResponse(g_recaptcha_response)) {
+			model.addAttribute("errorMessage", "You're going too fast");
+			return "login";
 				
-		// }
+		}
 		
 		boolean isValidUser =  userService.validateUser(username, password);
 		if (!isValidUser) {
@@ -104,18 +104,18 @@ public class LoginController {
 		String password = request.getParameter("password"); 
 		String firstname = request.getParameter("firstname"); 
 		String lastname = request.getParameter("lastname"); 
-		// String g_recaptcha_response = request.getParameter("g-recaptcha-response");
+		String g_recaptcha_response = request.getParameter("g-recaptcha-response");
 
-		// if(!captchaService.verifyResponse(g_recaptcha_response)) {
-		// 	model.addAttribute("errorMessage", "You're going too fast");
-		// 	return "signup";
+		if(!captchaService.verifyResponse(g_recaptcha_response)) {
+			model.addAttribute("errorMessage", "You're going too fast");
+			return "signup";
 				
-		// }
+		}
 
-		// if (!userService.findByUsername(username).isEmpty()) {
-		// 	model.addAttribute("errorMessage", "User is existed");
-        //     return "signup";
-        // }
+		if (!userService.findByUsername(username).isEmpty()) {
+			model.addAttribute("errorMessage", "User is existed");
+            return "signup";
+        }
 		
 		String salt = passwordService.getRandomString(8);
 		User user = new User (username, password, firstname, lastname);
