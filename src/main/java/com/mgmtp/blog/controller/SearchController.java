@@ -3,6 +3,9 @@ package com.mgmtp.blog.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mgmtp.blog.model.User;
+import com.mgmtp.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,8 @@ import com.mgmtp.blog.service.PostService;
 public class SearchController {
 	
 	@Autowired
-	PostService postService;
+	//PostService postService;
+	UserService userService;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String showSearchResult(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -24,13 +28,17 @@ public class SearchController {
 		//redirect to index with empty query
 		if(query.length() == 0) return "redirect:/";
 		
-		List<Post> posts;
-		
-		
-		posts = (List<Post>) postService.findByTitle(query);				
-		
+		//List<Post> posts;
+		List<User> users;
+
+		//posts = (List<Post>) postService.findByTitle(query);
+
+
+		query = "%" + query + "%";
+		users = (List<User>) userService.findByUsername(query);
 	    model.addAttribute("searchquery", query);
-		model.addAttribute("posts", posts);
-	    return "index";
+		//model.addAttribute("posts", posts);
+		model.addAttribute("users", users);
+	    return "search";
 	}
 }
